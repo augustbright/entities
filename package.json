@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest ./src",
     "dev": "ts-node src/index.ts"
   },
   "repository": {
@@ -19,8 +19,15 @@
   },
   "homepage": "https://github.com/augustbright/entities#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/lodash": "^4.14.168",
     "@types/node": "^14.14.41",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.5",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
