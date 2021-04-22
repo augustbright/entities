@@ -1,11 +1,10 @@
-export interface TickInput {
+import {Frame} from '../frame';
+
+export interface ITickInput {
 
 }
 
-export interface TickOutput {
-
+export interface ITickOutput {
+    frames: Array<Frame>,
+    done?: boolean
 }
-
-export interface Operator {
-    tick(input: TickInput): TickOutput
-};

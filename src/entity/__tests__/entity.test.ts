@@ -3,6 +3,7 @@ import {
     generateEntityId,
     cloneEntity
 } from '../funcs';
+import { EntityType } from '../types';
 
 describe('Entities', () => {
     describe('generateEntityId', () => {
@@ -14,12 +15,13 @@ describe('Entities', () => {
             expect(generateEntityId()).not.toEqual(generateEntityId());
         });
     });
+
     describe('createEntity', () => {
         it('should create entity', () => {
             expect(typeof createEntity([], {})).toBe('object');
         });
         it('should pass types and payload and generate id', () => {
-            const entity = createEntity(['type1', 'type2'], {
+            const entity = createEntity([EntityType.Dot, EntityType.Line], {
                 key1: 'value1',
                 key2: 'value2'
             });
@@ -27,17 +29,17 @@ describe('Entities', () => {
                 key1: 'value1',
                 key2: 'value2'
             });
-            expect(entity.types).toEqual(['type1', 'type2']);
+            expect(entity.types).toEqual([EntityType.Dot, EntityType.Line]);
             expect(typeof entity.id).toBe('string');
         });
     });
     describe('cloneEntity', () => {
         it('should clone entity and mix types and payload', () => {
-            const entity = createEntity(['type1', 'type2'], {
+            const entity = createEntity([EntityType.Dot, EntityType.Line], {
                 key1: 'value1',
                 key2: 'value2'
             });
-            const clonedEntity = cloneEntity(entity, ['mixedType'], {
+            const clonedEntity = cloneEntity(entity, [EntityType.Circle], {
                 mixedKey: 'mixedValue'
             });
 
@@ -47,7 +49,7 @@ describe('Entities', () => {
                 mixedKey: 'mixedValue'
             });
 
-            expect(clonedEntity.types).toEqual(['type1', 'type2', 'mixedType']);
+            expect(clonedEntity.types).toEqual([EntityType.Dot, EntityType.Line, EntityType.Circle]);
             expect(clonedEntity.id).toEqual(entity.id);
         });
     });
