@@ -1,4 +1,3 @@
-import { EntityType } from '../../entity';
 import { SetColor } from '../SetColor';
 import {SpawnEntity} from '../SpawnEntity';
 
@@ -15,9 +14,9 @@ describe('Operators', () => {
                 }
             });
             const tickOutput = operator.tick({});
-            expect(tickOutput.frame.entities.length).toBe(1);
-            expect(tickOutput.frame.entities[0]).toEqual({
-                id: tickOutput.frame.entities[0].id,
+            expect(tickOutput.frame?.entities.length).toBe(1);
+            expect(tickOutput.frame?.entities[0]).toEqual({
+                id: tickOutput.frame?.entities[0].id,
                 payload: {
                     position: {
                         x: 10,
@@ -51,7 +50,7 @@ describe('Operators', () => {
                 })
             ]);
             const tickOutput = operator.tick({});
-            expect(tickOutput.frame.entities[0].payload).toEqual({
+            expect(tickOutput.frame?.entities[0].payload).toEqual({
                 position: {
                     x: 10,
                     y: 10,
