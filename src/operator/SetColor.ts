@@ -1,25 +1,23 @@
 import { Color } from '../common/types';
-import { EntityPayload, EntityType } from '../entity';
-import { cloneEntity, createEntity } from '../entity/funcs';
-import {createFrame} from '../frame';
+import { cloneEntity } from '../entity/funcs';
 import { Operator } from './Base';
-import {ITickInput, ITickOutput} from './types';
+import { IOperatorInputData, IOperatorOutputData } from './types';
 
 interface ISetColorOperatorProps {
-    color: Color,
-    for: Operator<any>
+    color: Color
 };
 
 export class SetColor extends Operator<ISetColorOperatorProps> {
-    tick(input: ITickInput): ITickOutput {
-        const output = this.props.for.tick(input);
+    output(input: IOperatorInputData): IOperatorOutputData {
         return {
-            frames: output.frames.map(frame => ({
-                entities: frame.entities.map(entity => cloneEntity(entity, [], {
-                    color: this.props.color
-                }))
-            })),
-            done: true
+            frame: {
+                entities: input.mergedFrame.entities.map(
+                    entity => cloneEntity(entity, [], {
+                        color: this.props.color
+                    })
+                )
+            },
+            done: input.childDone
         };
     }
 };

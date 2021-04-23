@@ -2,7 +2,7 @@ import { EntityPayload, EntityType } from '../entity';
 import { createEntity } from '../entity/funcs';
 import {createFrame} from '../frame';
 import { Operator } from './Base';
-import {ITickInput, ITickOutput} from './types';
+import {IOperatorInputData, IOperatorOutputData, ITickInput, ITickOutput} from './types';
 
 interface IEntityOperatorProps {
     types: Array<EntityType>,
@@ -10,7 +10,7 @@ interface IEntityOperatorProps {
 };
 
 export class SpawnEntity extends Operator<IEntityOperatorProps> {
-    tick(input: ITickInput): ITickOutput {
+    output(input: IOperatorInputData): IOperatorOutputData {
         const entity = createEntity(
             this.props.types,
             this.props.payload
@@ -19,8 +19,8 @@ export class SpawnEntity extends Operator<IEntityOperatorProps> {
         const frame = createFrame([entity]);
 
         return {
-            frames: [frame],
-            done: true
+            frame,
+            done: this.currentFrame > 1
         };
     }
 };

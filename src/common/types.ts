@@ -11,3 +11,5 @@ export type Color = {
     G: number,
     B: number
 };
+
+export type Time = number;

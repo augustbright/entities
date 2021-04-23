@@ -5,6 +5,21 @@ export interface ITickInput {
 }
 
 export interface ITickOutput {
-    frames: Array<Frame>,
+    frame?: Frame,
     done?: boolean
+}
+
+export interface IOperatorInputData {
+    childrenOutput: Array<ITickOutput>
+    mergedFrame: Frame,
+    childDone: boolean
+}
+
+export interface IOperatorOutputData {
+    frame?: Frame,
+    done?: boolean    
+}
+
+export interface IOperator {
+    tick(input: ITickInput): ITickOutput
 }

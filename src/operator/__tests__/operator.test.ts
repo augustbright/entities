@@ -15,10 +15,9 @@ describe('Operators', () => {
                 }
             });
             const tickOutput = operator.tick({});
-            expect(tickOutput.frames.length).toBe(1);
-            expect(tickOutput.frames[0].entities.length).toBe(1);
-            expect(tickOutput.frames[0].entities[0]).toEqual({
-                id: tickOutput.frames[0].entities[0].id,
+            expect(tickOutput.frame.entities.length).toBe(1);
+            expect(tickOutput.frame.entities[0]).toEqual({
+                id: tickOutput.frame.entities[0].id,
                 payload: {
                     position: {
                         x: 10,
@@ -38,19 +37,20 @@ describe('Operators', () => {
                     R: 10,
                     G: 20,
                     B: 30
-                },
-                for: new SpawnEntity({
-                        types: [EntityType.Dot],
-                        payload: {
-                            position: {
-                                x: 10,
-                                y: 10
-                            }
+                }
+            }, [
+                new SpawnEntity({
+                    types: [EntityType.Dot],
+                    payload: {
+                        position: {
+                            x: 10,
+                            y: 10
                         }
-                    })
-            });
+                    }
+                })
+            ]);
             const tickOutput = operator.tick({});
-            expect(tickOutput.frames[0].entities[0].payload).toEqual({
+            expect(tickOutput.frame.entities[0].payload).toEqual({
                 position: {
                     x: 10,
                     y: 10,

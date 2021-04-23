@@ -1,2 +1,2 @@
 export {Frame} from './types';
-export {createFrame} from './funcs';
+export {createFrame, mergeFrames} from './funcs';

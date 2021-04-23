@@ -1,6 +1,8 @@
 {
     "compilerOptions": {
-        "module": "commonjs"
+        "module": "commonjs",
+        "sourceMap": true,
+        "outDir": "./out"
     },
     "exclude": [
         "node_modules"
