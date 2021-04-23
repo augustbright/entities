@@ -21,7 +21,7 @@ describe('Entities', () => {
             expect(typeof createEntity([], {})).toBe('object');
         });
         it('should pass types and payload and generate id', () => {
-            const entity = createEntity([EntityType.Dot, EntityType.Line], {
+            const entity = createEntity(['type1', 'type2'], {
                 key1: 'value1',
                 key2: 'value2'
             });
@@ -29,17 +29,17 @@ describe('Entities', () => {
                 key1: 'value1',
                 key2: 'value2'
             });
-            expect(entity.types).toEqual([EntityType.Dot, EntityType.Line]);
+            expect(entity.types).toEqual(['type1', 'type2']);
             expect(typeof entity.id).toBe('string');
         });
     });
     describe('cloneEntity', () => {
         it('should clone entity and mix types and payload', () => {
-            const entity = createEntity([EntityType.Dot, EntityType.Line], {
+            const entity = createEntity(['type1', 'type2'], {
                 key1: 'value1',
                 key2: 'value2'
             });
-            const clonedEntity = cloneEntity(entity, [EntityType.Circle], {
+            const clonedEntity = cloneEntity(entity, ['type3'], {
                 mixedKey: 'mixedValue'
             });
 
@@ -49,7 +49,7 @@ describe('Entities', () => {
                 mixedKey: 'mixedValue'
             });
 
-            expect(clonedEntity.types).toEqual([EntityType.Dot, EntityType.Line, EntityType.Circle]);
+            expect(clonedEntity.types).toEqual(['type1', 'type2', 'type3']);
             expect(clonedEntity.id).toEqual(entity.id);
         });
     });

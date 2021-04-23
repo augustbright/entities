@@ -6,7 +6,7 @@ describe('Operators', () => {
     describe('SpawnEntity', () => {
         it('should create a frame with described entity and finish', () => {
             const operator = new SpawnEntity({
-                types: [EntityType.Dot],
+                types: ['dot'],
                 payload: {
                     position: {
                         x: 10,
@@ -24,9 +24,10 @@ describe('Operators', () => {
                         y: 10
                     }
                 },
-                types: [EntityType.Dot]
+                types: ['dot']
             });
-            expect(tickOutput.done).toBe(true);
+            const tick2Output = operator.tick({});
+            expect(tick2Output.done).toBe(true);
         });
     });
 
@@ -40,7 +41,7 @@ describe('Operators', () => {
                 }
             }, [
                 new SpawnEntity({
-                    types: [EntityType.Dot],
+                    types: ['dot'],
                     payload: {
                         position: {
                             x: 10,

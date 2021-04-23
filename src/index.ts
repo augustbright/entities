@@ -11,7 +11,7 @@ const operator = new Transpose({
     framesCount: 10        
 }, [
     new SpawnEntity({
-        types: [EntityType.Dot],
+        types: ['dot'],
         payload: {
             position: {
                 x: 10,

@@ -1,8 +1,4 @@
-export enum EntityType {
-    Dot,
-    Line,
-    Circle
-};
+export type EntityType = string;
 export type EntityId = string;
 
 export interface EntityPayload {
