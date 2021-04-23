@@ -77,7 +77,7 @@ export class Scene extends React.Component<SceneProps, SceneState> {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
-        this.clearCanvas();
+        // this.clearCanvas();
 
         const frame = this.getCurrentFrame();
         frame.entities.forEach(entity => {
@@ -90,6 +90,10 @@ export class Scene extends React.Component<SceneProps, SceneState> {
                 )
             }
         });
+
+        setTimeout(() => {
+            this.onClickNext();
+        }, 1);
     }
 
     render() {
@@ -98,7 +102,7 @@ export class Scene extends React.Component<SceneProps, SceneState> {
             <div>
                 <button onClick={this.onClickPrevious}>PREV</button>
                 <button onClick={this.onClickNext}>NEXT</button>
-                <canvas ref={this.canvasRef} width="150" height="150"></canvas>
+                <canvas ref={this.canvasRef} width="600" height="600"></canvas>
                 <pre>
                     {JSON.stringify(frame, null, 4)}
                 </pre>
