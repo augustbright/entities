@@ -1,6 +1,6 @@
 import { Vector } from '../common/types';
 import { cloneEntity } from '../entity/funcs';
-import { Frame } from '../frame';
+import { createFrame, Frame } from '../frame';
 import { Operator } from './Base';
 import {IOperatorInputData, IOperatorOutputData, ITickInput, ITickOutput} from './types';
 
@@ -11,14 +11,15 @@ interface ITransposeOperatorProps {
 };
 
 export class Transpose extends Operator<ITransposeOperatorProps> {    
-    cachedFrame: Frame;
+    cachedFrame: Frame = createFrame([]);
     output(input: IOperatorInputData): IOperatorOutputData {
         this.cachedFrame = input.childDone ? this.cachedFrame : input.mergedFrame;
-        const frameOffset = Math.min(this.props.framesCount, this.currentFrame);
+        const framesCount = this.props.framesCount || 30;
+        const frameOffset = Math.min(framesCount, this.currentFrame);
 
         const move: Vector = {
-            x: this.props.vector.x / this.props.framesCount * frameOffset,
-            y: this.props.vector.y / this.props.framesCount * frameOffset
+            x: this.props.vector.x / framesCount * frameOffset,
+            y: this.props.vector.y / framesCount * frameOffset
         };        
 
         return {
@@ -32,7 +33,7 @@ export class Transpose extends Operator<ITransposeOperatorProps> {
                     }) : entity
                 )
             }),
-            done: (this.currentFrame >= this.props.framesCount && input.childDone)
+            done: (this.currentFrame >= framesCount && input.childDone)
         };
     }
 };

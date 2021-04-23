@@ -33,7 +33,7 @@ export abstract class Operator<Props> {
                 .every(({done}) => done)
         });
 
-        this.done = output.done;
+        this.done = output.done || false;
 
         if (Array.isArray(this.children)) {
             this.childrenOutput = this.children.map(child => {

@@ -1,1 +1,1 @@
-export {Entity, EntityType, EntityPayload} from './types';
+export type {Entity, EntityType, EntityPayload} from './types';

@@ -9,5 +9,5 @@ export const mergeFrames = (frames: Array<Frame>): Frame => ({
     entities: frames.reduce((memo, frame) => [
         ...memo,
         ...frame.entities
-    ], [])
+    ], [] as Array<Entity>)
 });
